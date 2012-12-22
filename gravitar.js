@@ -78,13 +78,21 @@ $(window).load(function(){
         });
 
         $('i, body').click(function(){
+            if (window._overlay_timeout)
+                clearTimeout(window._overlay_timeout);
+
             $('#overlay').show().css('opacity', 1);
         });
 
         $('button').bind('click', function(e){
-            $('#overlay').css('opacity', 0);
             e.stopPropagation();
-            setTimeout(function(){
+
+            if (window._overlay_timeout)
+                clearTimeout(window._overlay_timeout);
+
+            $('#overlay').css('opacity', 0);
+
+            window._overlay_timeout = setTimeout(function(){
                 $('#overlay').hide();
             }, 3000);
         });
