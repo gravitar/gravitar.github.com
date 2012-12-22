@@ -77,6 +77,10 @@ $(window).load(function(){
             location.href = '#' + $(this).val();
         });
 
+        $('i').click(function(){
+            $('#overlay').show().css('opacity', 1);
+        });
+
         $('button').bind('click', function(){
             $('#overlay').css('opacity', 0);
             setTimeout(function(){

@@ -9,6 +9,7 @@ body {
 }
 
 i {
+    cursor: pointer;
     position: absolute;
     display: block;
     background: #000;
@@ -73,6 +74,7 @@ input[type="text"]:focus {
 }
 
 button {
+    cursor: pointer;
     margin: 10%;
     margin-top: 0px;
     padding: 5%;
