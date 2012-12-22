@@ -21,34 +21,35 @@ $(window).load(function(){
     }
 
     function boundingBoxCheck() {
+        var collision = false;
         if (x < 0) {
             x = 0;
             vx = -vx;
             vr = vy;
-
-            bounce();
+            collision = true;
         }
         if (y < 0) {
             y = 0;
             vy = -vy;
             vr = -vx;
-
-            bounce();
+            collision = true;
         }
         if (x > document.documentElement.clientWidth - sphereWidth) {
             x = document.documentElement.clientWidth - sphereWidth;
             vx = -vx;
             vr = -vy;
-
-            bounce();
+            collision = true;
         }
         if (y > document.documentElement.clientHeight - sphereHeight) {
             y = document.documentElement.clientHeight - sphereHeight;
             vy = -vy;
             vr = vx;
-
+            collision = true;
+        }
+        if (collision) {
             bounce();
         }
+        return collision;
     }
 
     function startGame() {
@@ -62,29 +63,34 @@ $(window).load(function(){
             ay = -8;
             //x = parseInt(($(window).width() - sphereWidth)/ 2, 10);
             y = parseInt(($(window).height() - sphereHeight)/ 2, 10);
-            x = $(window).width() - sphereWidth;
+            x = parseInt(($(window).width() - sphereWidth)/ 2, 10);
         }
 
         setInterval(function(){
-            var landscapeOrientation = window.DeviceMotionEvent !== undefined ? false : window.innerWidth / window.innerHeight > 1;
+            var landscapeOrientation = window.DeviceMotionEvent === undefined ? false : window.innerWidth / window.innerHeight > 1;
+
             if (landscapeOrientation) {
-                vx = vx + ax;
-                vy = vy + ay;
+                vx = vx + ay;
+                vy = vy + ax;
             } else {
                 vy = vy - ay;
-                vx = vx - ax;
+                vx = vx + ax;
             }
+
             vx = vx * 0.98;
             vy = vy * 0.98;
+
             r = parseInt(r + vr / 50, 10);
             y = parseInt(y + vy / 50, 10);
             x = parseInt(x + vx / 50, 10);
+
             boundingBoxCheck();
+
             $sphere.css('-webkit-transform', 'rotate(' + r + 'deg)');
             sphere.style.top = y + 'px';
             sphere.style.left = x + 'px';
 
-            console.log('x', x, 'y', y, 'ax', ax, 'ay', ay, 'vx', vx, 'vy', vy);
+            //console.log('x', x, 'y', y, 'ax', parseInt(ax, 10), 'ay', parseInt(ay, 10), 'vx', parseInt(vx, 10), 'vy', parseInt(vy, 10));
         }, 25);
     }
 
