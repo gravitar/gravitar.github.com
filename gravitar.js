@@ -73,28 +73,29 @@ $(window).load(function(){
             $('input').val(document.location.hash.substr(1) || '');
         }
 
-        $('input').bind('change keyup keypress', function(){
+        $('input').bind('change keyup keypress', function(e){
             location.href = '#' + $(this).val();
+            if (e.keyCode == 13) {
+                $('button').click();
+            }
         });
 
         $('i, body').click(function(){
-            if (window._overlay_timeout)
-                clearTimeout(window._overlay_timeout);
-
-            $('#overlay').show().css('opacity', 1);
+            $('#overlay').css({
+                top: 0,
+                bottom: 0,
+                '-webkit-transition': 'bottom 0.4s, top 0.4s 0.3s'
+            });
         });
 
         $('button').bind('click', function(e){
             e.stopPropagation();
 
-            if (window._overlay_timeout)
-                clearTimeout(window._overlay_timeout);
-
-            $('#overlay').css('opacity', 0);
-
-            window._overlay_timeout = setTimeout(function(){
-                $('#overlay').hide();
-            }, 3000);
+            $('#overlay').css({
+                top: '-100%',
+                bottom: '100%',
+                '-webkit-transition': 'top 0.4s, bottom 0.4s 0.3s'
+            });
         });
 
         setInterval(function(){

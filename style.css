@@ -6,6 +6,11 @@
 
 body {
     background: #eee;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
 }
 
 i {
@@ -53,7 +58,7 @@ i.static {
     bottom: 0px;
     right: 0px;
     background: rgba(0, 0, 0, 0.4);
-    -webkit-transition: opacity 0.4s;
+    -webkit-transition: top 0.4s, bottom 0.4s 0.3s;
     opacity: 1;
 }
 
