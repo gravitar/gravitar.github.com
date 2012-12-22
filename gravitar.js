@@ -77,12 +77,13 @@ $(window).load(function(){
             location.href = '#' + $(this).val();
         });
 
-        $('i').click(function(){
+        $('i, body').click(function(){
             $('#overlay').show().css('opacity', 1);
         });
 
-        $('button').bind('click', function(){
+        $('button').bind('click', function(e){
             $('#overlay').css('opacity', 0);
+            e.stopPropagation();
             setTimeout(function(){
                 $('#overlay').hide();
             }, 3000);
