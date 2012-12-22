@@ -16,7 +16,10 @@ $(window).load(function(){
 
     function changePicToHash(){
         if (document.location.hash) {
-            $('i').css('background-image', 'url("http://gravatar.com/avatar/' + CryptoJS.MD5(document.location.hash.substr(1)) + '")');
+            $('i').css(
+                'background-image',
+                'url("http://gravatar.com/avatar/' + CryptoJS.MD5(document.location.hash.substr(1)) + '?s=256&d=http%3A%2F%2Fgravitar.me/transparent.png")'
+            );
         }
     }
 
@@ -65,6 +68,21 @@ $(window).load(function(){
             y = parseInt(($(window).height() - sphereHeight)/ 2, 10);
             x = parseInt(($(window).width() - sphereWidth)/ 2, 10);
         }
+
+        if (document.location.hash) {
+            $('input').val(document.location.hash.substr(1) || '');
+        }
+
+        $('input').bind('change keyup keypress', function(){
+            location.href = '#' + $(this).val();
+        });
+
+        $('button').bind('click', function(){
+            $('#overlay').css('opacity', 0);
+            setTimeout(function(){
+                $('#overlay').hide();
+            }, 3000);
+        });
 
         setInterval(function(){
             var landscapeOrientation = window.DeviceMotionEvent === undefined ? false : window.innerWidth / window.innerHeight > 1;
