@@ -56,17 +56,16 @@ $(window).load(function(){
     }
 
     function startGame() {
+        y = parseInt(($(window).height() - sphereHeight)/ 2, 10);
+        x = parseInt(($(window).width() - sphereWidth)/ 2, 10);
+
         if (window.DeviceMotionEvent !== undefined) {
             window.ondevicemotion = function (e) {
                 ax = event.accelerationIncludingGravity.x * 5;
                 ay = event.accelerationIncludingGravity.y * 5;
             };
         } else {
-            //ax = 3;
             ay = -8;
-            //x = parseInt(($(window).width() - sphereWidth)/ 2, 10);
-            y = parseInt(($(window).height() - sphereHeight)/ 2, 10);
-            x = parseInt(($(window).width() - sphereWidth)/ 2, 10);
         }
 
         if (document.location.hash) {
