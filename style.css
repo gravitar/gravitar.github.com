@@ -50,6 +50,7 @@ i.static {
 
 #overlay {
     position: fixed;
+    text-align: center;
     top: 0px;
     left: 0px;
     bottom: 0px;
@@ -69,6 +70,7 @@ input[type="text"] {
     font-size: 24px;
     background: rgba(0, 0, 0, 0.2);
     color: #fff;
+    max-width: 700px;
 }
 
 input[type="text"]:focus {
@@ -87,6 +89,7 @@ button {
     font-size: 24px;
     background: rgba(0, 0, 0, 0.2);
     color: #fff;
+    max-width: 700px;
 }
 
 button:active {
