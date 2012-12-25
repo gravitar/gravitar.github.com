@@ -126,6 +126,9 @@ $(window).load(function(){
     }
 
     function bounce() {
+        return;
+
+        /*
         if (window._timeout)
             clearTimeout(window._timeout);
 
@@ -134,6 +137,7 @@ $(window).load(function(){
         window._timeout = setTimeout(function(){
             $sphere.removeClass('bounced');
         }, 100);
+        */
     }
 
     $(window).bind('hashchange', changePicToHash);
